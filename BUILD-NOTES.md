@@ -1,11 +1,13 @@
-# BUILD-NOTES — Ultrasonic for Pebble 0.1.0
+# BUILD-NOTES — Ultrasonic for Pebble 0.1.1
 
 What was verified, how, and against what; what was not; and the decisions that shaped it.
 
 ## Verified
 
-Every row under *Build, emulator and tests* was executed on this release's source, from a
-clean extraction of its tree. The rows under *On hardware* ran on a pre-release build whose
+Rows marked **0.1.1** were run on this release's source, from a clean extraction of its tree.
+The other rows under *Build, emulator and tests* were run the same way on 0.1.0. Its C and
+Kotlin sources are identical to 0.1.1's, which adds the launcher icon and changes version
+numbers only. The rows under *On hardware* ran on a pre-release build whose
 app code differs from this release only in the companion's package id, the watchapp UUID and
 the companion URL (every other app source file compared identical).
 
@@ -14,15 +16,17 @@ the companion URL (every other app source file compared identical).
 | Claim | How |
 |---|---|
 | `flint` = Pebble 2 Duo, `emery` = Pebble Time 2 | SDK 4.33.1 template README and `pebble_sdk_platform.py` |
-| Watch C builds for both with 0 compiler warnings | a fresh build compiles **12/12** core objects (6 files x 2 platforms) with **0 compiler warnings**. The SDK passes `-Wall -Wextra -Werror` but also `-Wno-error` for several classes (unused variable, unused function, format truncation among them) and exits 0 with those present, so `build.sh` and the emulator suite count warnings themselves |
+| Watch C builds for both with 0 compiler warnings | **0.1.1.** A fresh build compiles **12/12** core objects (6 files x 2 platforms) with **0 compiler warnings**. The SDK passes `-Wall -Wextra -Werror` but also `-Wno-error` for several classes (unused variable, unused function, format truncation among them) and exits 0 with those present, so `build.sh` and the emulator suite count warnings themselves |
 | That warning count can fail | an unused variable injected into `main.c`: **2** warnings counted (one per platform); source restored, sha256 equal to the original; recount **0** |
 | RAM | flint 26,840 / 65,536 B; emery 26,844 / 131,072 B |
 | Every screen renders on both | the emulator suite captures 11 states per platform; every frame was inspected. `store-assets/screenshots/` holds 5 of them per platform |
-| Watch <-> companion protocol | `tools/fake_companion.py`: **29/29 on flint, 29/29 on emery**; every watch->phone command asserted by value, stale-REQ header and watchdog checked by pixel diff |
+| Watch <-> companion protocol | **0.1.1.** `tools/fake_companion.py`: **29/29 on flint, 29/29 on emery**; every watch->phone command asserted by value, stale-REQ header and watchdog checked by pixel diff |
 | The suite can fail | `tools/mutate_watch.py`: **6/6 mutants caught at the intended step**, clean suite after restore |
-| Companion unit tests | **29/29** (JVM): wire contract parsed from `package.json` and `protocol.h`, UTF-8 truncation, list registry, now-playing mapping, Ultrasonic id flags |
+| Companion unit tests | **0.1.1.** **29/29** (JVM): wire contract parsed from `package.json` and `protocol.h`, UTF-8 truncation, list registry, now-playing mapping, Ultrasonic id flags |
 | Companion tests can fail | `tools/mutate_companion.py`: **7/7 mutants caught, each at its named test** (key drift, command drift, NUL budget, UTF-8 width, list-id wrap, heart precedence, Play All flags), clean 29/29 after restore |
-| Debug hook is debug-only | `aapt2` and `dexdump`: InjectCommandReceiver declared 1 / in dex 1 in the debug APK, 0 / 0 in the release APK; a positive-control class is present in both |
+| Debug hook is debug-only | **0.1.1.** `aapt2` and `dexdump`: InjectCommandReceiver declared 1 / in dex 1 in the debug APK, 0 / 0 in the release APK; a positive-control class is present in both |
+| Launcher icon | **0.1.1.** The `.pbw` declares `IMAGE_MENU_ICON` with `menuIcon: true` (25 x 25, black on transparent: beamed eighth notes). Installed on both emulators, the launcher draws it on the app's row, unselected and highlighted |
+| The companion updates in place | **0.1.1.** The debug APK is signed with the same certificate as 0.1.0's (SHA-256 `259c47aaad98b6aa814763bf31e7f0835ef69c825b69eb3c1e1d3d2125b4a127`), so it installs over it |
 
 ### On hardware (Pebble Time 2, Core Devices app 1.12.0.1, Ultrasonic 4.8.0)
 

@@ -15,7 +15,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly ROOT
 readonly DIST="${ROOT}/dist"
-readonly VERSION="0.1.0"
+readonly VERSION="0.1.1"
 
 step() { printf '%s %s\n' "$(date -u +%H:%M:%SZ)" "$*"; }
 

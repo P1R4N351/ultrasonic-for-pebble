@@ -55,16 +55,16 @@ tracks the way its own notification does. There is no PebbleKit JS.
 Requirements on the phone: Ultrasonic (tested 4.8.0), the Core Devices Pebble app (tested
 1.12.0.1) paired to the watch.
 
-The easiest path is a **Release**: grab `ultrasonic-pebble-0.1.0.pbw` and
-`ultrasonic-for-pebble-0.1.0-debug.apk` from the GitHub Releases page.
+The easiest path is a **Release**: grab `ultrasonic-pebble-0.1.1.pbw` and
+`ultrasonic-for-pebble-0.1.1-debug.apk` from the GitHub Releases page.
 
 To build from source:
 
 1. `bash build.sh` produces both artifacts under `dist/`. It expects
    `pebble` (SDK 4.33.1) and JDK 17 on PATH, and an Android SDK with
    build-tools 36 and platform 36.
-2. Install the companion: `adb install -r dist/ultrasonic-for-pebble-0.1.0-debug.apk`.
-3. Open `dist/ultrasonic-pebble-0.1.0.pbw` with the Pebble app on the phone
+2. Install the companion: `adb install -r dist/ultrasonic-for-pebble-0.1.1-debug.apk`.
+3. Open `dist/ultrasonic-pebble-0.1.1.pbw` with the Pebble app on the phone
    (or, over adb: push it to `/sdcard/Download`, media-scan it, and
    `am start -a android.intent.action.VIEW` its `content://media/external/downloads/<id>`
    URI with `-n coredevices.coreapp/.MainActivity` — the Pebble app then
