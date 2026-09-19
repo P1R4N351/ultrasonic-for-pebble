@@ -1,0 +1,21 @@
+Ultrasonic for Pebble
+Copyright (c) 2026 PiSCES.
+
+This product includes software developed as part of PiSCES.
+
+This project interoperates with:
+
+  Ultrasonic (org.moire.ultrasonic)
+    https://ultrasonic.gitlab.io/
+    Open-source Android client for Subsonic/Navidrome servers.
+    GPL-3.0.
+
+  PebbleKit Android 2 (io.rebble.pebblekit2)
+    https://github.com/pebble-dev/PebbleKitAndroid2
+    Apache-2.0.
+
+  PebbleOS
+    https://github.com/coredevices/PebbleOS
+    Apache-2.0.
+
+Neither Ultrasonic nor the Pebble project endorses this work.

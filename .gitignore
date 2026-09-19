@@ -1,0 +1,7 @@
+watchapp/build/
+companion/.gradle/
+companion/build/
+companion/app/build/
+companion/local.properties
+dist/
+.DS_Store

@@ -1,0 +1,60 @@
+{
+  "name": "ultrasonic-pebble",
+  "author": "PiSCES",
+  "version": "0.1.0",
+  "private": true,
+  "keywords": [
+    "pebble-app"
+  ],
+  "dependencies": {},
+  "pebble": {
+    "displayName": "Ultrasonic",
+    "uuid": "37f76f96-ec7a-432b-b558-9e7d6585d671",
+    "sdkVersion": "3",
+    "targetPlatforms": [
+      "flint",
+      "emery"
+    ],
+    "enableMultiJS": false,
+    "projectType": "native",
+    "watchapp": {
+      "watchface": false,
+      "hiddenApp": false,
+      "onlyShownOnCommunication": false
+    },
+    "capabilities": [],
+    "messageKeys": {
+      "CMD": 1,
+      "ARG": 2,
+      "LIST_ID": 3,
+      "REQ": 4,
+      "NP_TITLE": 10,
+      "NP_ARTIST": 11,
+      "NP_ALBUM": 12,
+      "NP_STATE": 13,
+      "NP_POS": 14,
+      "NP_DUR": 15,
+      "NP_FLAGS": 16,
+      "STATUS": 17,
+      "LIST_TITLE": 20,
+      "LIST_COUNT": 21,
+      "ITEM_INDEX": 22,
+      "ITEM_LABEL": 23,
+      "ITEM_SUB": 24,
+      "ITEM_FLAGS": 25
+    },
+    "resources": {
+      "media": []
+    },
+    "companionApp": {
+      "android": {
+        "url": "https://github.com/P1R4N351/ultrasonic-for-pebble",
+        "apps": [
+          {
+            "package": "io.github.p1r4n351.ultrasonic.pebble"
+          }
+        ]
+      }
+    }
+  }
+}
