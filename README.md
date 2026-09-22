@@ -99,3 +99,36 @@ Documentation is licensed under CC BY 4.0 (https://creativecommons.org/licenses/
 *Ultrasonic* is a trademark of its authors (the `org.moire.ultrasonic`
 project). This project is not affiliated with Ultrasonic or with Core
 Devices; it interoperates with them.
+
+## Glasses apps (Even Hub)
+
+The companion can also serve what is playing to a pair of Even Realities
+glasses, so a glasses app shows the same now-playing the watch does and can
+drive transport. It is **off by default** — turn on *Share now-playing with
+glasses apps* on the status screen.
+
+While it is on, the app serves on the phone's loopback interface only:
+
+```
+GET http://127.0.0.1:8766/media           -> now playing
+GET http://127.0.0.1:8766/media/<action>  -> play|pause|playpause|next|prev|volup|voldown
+GET http://127.0.0.1:8766/health          -> {"ok":true,"media":<on>}
+```
+
+This is the contract Even Hub companion apps already speak, so a glasses app
+written against any other provider of it works here unchanged.
+
+Three things worth knowing before you turn it on:
+
+- **It is loopback-only.** `127.0.0.1` is not reachable from your network; no
+  other device can read it and nothing leaves the phone. The `INTERNET`
+  permission in the manifest is what Android requires to open a local socket,
+  not a sign that the app phones home.
+- **Any app on the same phone can read it while it is on.** That is the price
+  of a local bridge with no pairing step, and it is why the switch starts off.
+- **Only one app can hold port 8766.** If another installed app already serves
+  this contract, this one cannot bind, and the status screen says so rather
+  than showing a switch that is on and doing nothing.
+
+The bridge runs while the app's process does — while the watchapp session is
+open, or while the status screen is. There is no always-on background service.

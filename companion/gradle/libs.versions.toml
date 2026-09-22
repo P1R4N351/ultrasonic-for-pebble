@@ -6,6 +6,8 @@ media3 = "1.9.0"
 pebblekit2 = "1.2.0"
 junit = "4.13.2"
 serialization-json = "1.11.0"
+nanohttpd = "2.3.1"
+json = "20250107"
 
 [libraries]
 media3-session = { module = "androidx.media3:media3-session", version.ref = "media3" }
@@ -13,6 +15,10 @@ kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutine
 kotlinx-coroutines-guava = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-guava", version.ref = "coroutines" }
 pebblekit2-client = { module = "io.rebble.pebblekit2:client", version.ref = "pebblekit2" }
 junit = { module = "junit:junit", version.ref = "junit" }
+nanohttpd = { module = "org.nanohttpd:nanohttpd", version.ref = "nanohttpd" }
+# Android ships org.json, but the host-side test JVM gets a stub that throws
+# "not mocked". A real implementation on the test classpath shadows it.
+json = { module = "org.json:json", version.ref = "json" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization-json" }
 
 [plugins]

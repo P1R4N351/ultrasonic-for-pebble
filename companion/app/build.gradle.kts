@@ -10,8 +10,8 @@ android {
     applicationId = "io.github.p1r4n351.ultrasonic.pebble"
     minSdk = 31
     targetSdk = 36
-    versionCode = 2
-    versionName = "0.1.1"
+    versionCode = 3
+    versionName = "0.2.0"
   }
 
   compileOptions {
@@ -52,6 +52,8 @@ dependencies {
   implementation(libs.kotlinx.coroutines.android)
   implementation(libs.kotlinx.coroutines.guava)
   implementation(libs.pebblekit2.client)
+  implementation(libs.nanohttpd)
   testImplementation(libs.junit)
+  testImplementation(libs.json)
   testImplementation(libs.kotlinx.serialization.json)
 }

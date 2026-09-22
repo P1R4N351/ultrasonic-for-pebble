@@ -12,8 +12,13 @@ import java.util.UUID
 /** Bound by the Pebble phone app while the watchapp is open; hands commands to the processor. */
 class UltrasonicPebbleService : BasePebbleListenerService() {
   private val processor by lazy { CommandProcessor.get(this) }
+  private val bridgeHost by lazy { UltrasonicBridgeHost(applicationContext) }
 
+  /* The glasses bridge rides along with the watch session: this app has no
+   * foreground service of its own, so while the watchapp is open is when the
+   * process is reliably alive. It is a no-op when the switch is off. */
   override fun onAppOpened(watchappUUID: UUID, watch: WatchIdentifier) {
+    MediaBridgeController.start(applicationContext, bridgeHost)
     if (watchappUUID != WatchLink.APP_UUID) return
     Log.i(TAG, "watchapp opened on ${watch.value}")
   }
